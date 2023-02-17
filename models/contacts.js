@@ -63,7 +63,6 @@ const updateContact = async (contactId, { name, email, phone }) => {
     const index = contacts.findIndex(
       (contact) => Number(contact.id) === contactId
     );
-    console.log(index);
     if (index === -1) {
       return null;
     }
@@ -81,13 +80,18 @@ const updateContact = async (contactId, { name, email, phone }) => {
 const removeContact = async (contactId) => {
   try {
     const contacts = await listContacts();
-    const newContacts = contacts.filter((contact) => {
-      if (Number(contact.id) !== contactId) {
-        return contact;
-      }
-    });
-    fs.writeFile(contactsPath, JSON.stringify(newContacts, null, 2), "utf8");
+    const index = contacts.findIndex(
+      (contact) => Number(contact.id) === contactId
+    );
+    if (index === -1) {
+      return null;
+    }
+
+    const [result] = contacts.splice(index, 1);
+
+    fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2), "utf8");
     console.log(`Contact was removed`);
+    return result;
   } catch (error) {
     console.error(error);
   }

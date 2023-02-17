@@ -13,8 +13,8 @@ const getContactId = (parsedData) => {
 
 const listContacts = async () => {
   try {
-    const data = await fs.readFile(contactsPath, "utf8");
-    return JSON.parse(data);
+    const contacts = await fs.readFile(contactsPath);
+    return JSON.parse(contacts);
   } catch (error) {
     console.error(error);
   }
@@ -41,12 +41,38 @@ const addContact = async ({ name, email, phone }) => {
       email,
       phone,
     };
-    console.log(newContact);
     contacts.push(newContact);
 
     await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2), "utf8");
     console.log(`Contact was added`);
     return newContact;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const updateContact = async (contactId, { name, email, phone }) => {
+  try {
+    const contacts = await listContacts();
+    const updatedContact = {
+      id: contactId,
+      name,
+      email,
+      phone,
+    };
+    const index = contacts.findIndex(
+      (contact) => Number(contact.id) === contactId
+    );
+    console.log(index);
+    if (index === -1) {
+      return null;
+    }
+
+    contacts.splice(index, 1, updatedContact);
+
+    await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2), "utf8");
+    console.log(`Contact was updated`);
+    return updatedContact;
   } catch (error) {
     console.error(error);
   }
@@ -66,8 +92,6 @@ const removeContact = async (contactId) => {
     console.error(error);
   }
 };
-
-const updateContact = async (contactId, body) => {};
 
 module.exports = {
   listContacts,

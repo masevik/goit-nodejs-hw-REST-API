@@ -23,13 +23,14 @@ router.post("/", async (req, res, next) => {
   return res.json(result);
 });
 
-router.delete("/:contactId", async (req, res, next) => {
-  const result = await removeContact(Number(req.params.contactId));
+router.put("/:contactId", async (req, res, next) => {
+  const result = await updateContact(Number(req.params.contactId), req.body);
   return res.json(result);
 });
 
-router.put("/:contactId", async (req, res, next) => {
-  res.json({ message: "template message" });
+router.delete("/:contactId", async (req, res, next) => {
+  const result = await removeContact(Number(req.params.contactId));
+  return res.json(result);
 });
 
 module.exports = router;

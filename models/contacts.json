@@ -24,10 +24,10 @@
     "phone": "(692) 802-2949"
   },
   {
-    "id": "5",
-    "name": "Cyrus Jackson",
-    "email": "nibh@semsempererat.com",
-    "phone": "(501) 472-5218"
+    "id": 5,
+    "name": "Test name 8",
+    "email": "test3@mail.com",
+    "phone": "(555) 555-5559"
   },
   {
     "id": "6",
@@ -60,27 +60,9 @@
     "phone": "(748) 206-2688"
   },
   {
-    "id": "11"
-  },
-  {
-    "id": "12"
-  },
-  {
-    "id": "13",
-    "name": "Test name",
-    "email": "test@mail.com",
-    "phone": "(555) 555-5555"
-  },
-  {
-    "id": "14",
-    "name": "Test name 2",
-    "email": "test@mail.com",
-    "phone": "(555) 555-5556"
-  },
-  {
-    "id": "15",
-    "name": "Test name 3",
-    "email": "test@mail.com",
-    "phone": "(555) 555-5557"
+    "id": "11",
+    "name": "Test name 10",
+    "email": "test3@mail.com",
+    "phone": "(555) 555-5560"
   }
 ]

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Joi = require("joi");
 const methods = require("../../models");
+const { HttpError } = require("../../utils");
 
 const schema = Joi.object({
   name: Joi.string().min(3).max(30).trim().required(),
@@ -29,12 +30,11 @@ router.get("/:contactId", async (req, res, next) => {
     const { contactId } = req.params;
     const result = await methods.getContactById(contactId);
     if (!result) {
-      return res.status(404).json({ message: "Not found" });
+      throw HttpError(404, "Not found");
     }
 
     return res.status(200).json(result);
   } catch (error) {
-    console.log(error);
     next(error);
   }
 });
@@ -43,7 +43,7 @@ router.post("/", async (req, res, next) => {
   try {
     const { error } = schema.validate(req.body);
     if (error) {
-      return res.status(400).json({ message: `${error.message}` });
+      throw HttpError(400, error.message);
     }
 
     const result = await methods.addContact(req.body);
@@ -58,14 +58,13 @@ router.put("/:contactId", async (req, res, next) => {
     const { contactId } = req.params;
     const { error } = schema.validate(req.body);
     if (error) {
-      console.log(error);
-      return res.status(400).json({ message: `${error.message}` });
+      throw HttpError(400, error.message);
     }
 
     const result = await methods.updateContact(contactId, req.body);
 
     if (!result) {
-      return res.status(404).json({ message: "Not found" });
+      throw HttpError(404, "Not found");
     }
 
     return res.status(200).json(result);
@@ -79,7 +78,7 @@ router.delete("/:contactId", async (req, res, next) => {
     const { contactId } = req.params;
     const result = await methods.removeContact(contactId);
     if (!result) {
-      return res.status(404).json({ message: "Not found" });
+      throw HttpError(404, "Not found");
     }
 
     return res.status(200).json({ message: "Contact deleted" });

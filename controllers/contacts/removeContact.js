@@ -1,16 +1,16 @@
 const { Contact } = require("../../models/contact");
 const { HttpError, ctrlWrapper } = require("../../utils");
 
-const getContactById = async (req, res, next) => {
+const removeContact = async (req, res, next) => {
   const { contactId } = req.params;
-  const result = await Contact.findById(contactId, "-createdAt -updatedAt");
+  const result = await Contact.findByIdAndDelete(contactId);
   if (!result) {
     throw HttpError(404, "Not found");
   }
 
-  return res.status(200).json(result);
+  return res.status(200).json({ message: "Contact deleted" });
 };
 
 module.exports = {
-  getContactById: ctrlWrapper(getContactById),
+  removeContact: ctrlWrapper(removeContact),
 };

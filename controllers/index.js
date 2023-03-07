@@ -5,7 +5,7 @@ const {
   updateContact,
   updateStatusContact,
   removeContact,
-} = require("./contacts.js");
+} = require("./contacts/index");
 
 module.exports = {
   getContacts,

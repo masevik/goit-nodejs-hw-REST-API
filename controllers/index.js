@@ -1,15 +1,17 @@
 const {
-  listContacts,
+  getContacts,
   getContactById,
   addContact,
   updateContact,
+  updateStatusContact,
   removeContact,
-} = require("./contacts.js");
+} = require("./contacts/index");
 
 module.exports = {
-  listContacts,
+  getContacts,
   getContactById,
   addContact,
   updateContact,
+  updateStatusContact,
   removeContact,
 };

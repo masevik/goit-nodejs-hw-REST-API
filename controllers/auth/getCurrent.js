@@ -1,4 +1,3 @@
-const { User } = require("../../models/user");
 const { ctrlWrapper } = require("../../utils");
 
 const getCurrent = async (req, res, next) => {

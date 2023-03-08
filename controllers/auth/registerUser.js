@@ -7,13 +7,13 @@ const registerUser = async (req, res, next) => {
   const user = await User.findOne({ email });
 
   if (user) {
-    throw HttpError(409, "Email already is use");
+    throw HttpError(409, "Email is use");
   }
 
   const hashPassword = await bcrypt.hash(password, 10);
 
   const result = await User.create({ ...req.body, password: hashPassword });
-  res.status(201).json({ name: result.name, email: result.email });
+  res.status(201).json({ user: { name: result.name, email: result.email } });
 };
 
 module.exports = {

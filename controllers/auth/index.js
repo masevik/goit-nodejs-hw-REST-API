@@ -1,9 +1,11 @@
 const { registerUser } = require("./registerUser");
-const { getUsers } = require("./getUsers");
 const { loginUser } = require("./loginUser");
+const { getCurrent } = require("./getCurrent");
+const { logout } = require("./logout");
 
 module.exports = {
   registerUser,
-  getUsers,
   loginUser,
+  getCurrent,
+  logout,
 };

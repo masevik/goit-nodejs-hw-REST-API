@@ -5,7 +5,15 @@ const {
   updateContact,
   updateStatusContact,
   removeContact,
-} = require("./contacts/index");
+} = require("./contacts");
+
+const {
+  registerUser,
+  loginUser,
+  getCurrent,
+  logout,
+  changeSubscription,
+} = require("./auth");
 
 module.exports = {
   getContacts,
@@ -14,4 +22,9 @@ module.exports = {
   updateContact,
   updateStatusContact,
   removeContact,
+  registerUser,
+  loginUser,
+  getCurrent,
+  logout,
+  changeSubscription,
 };

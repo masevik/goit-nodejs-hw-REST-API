@@ -14,6 +14,8 @@ const {
   logout,
   changeSubscription,
   changeAvatar,
+  verifyToken,
+  resendVerifyEmail,
 } = require("./auth");
 
 module.exports = {
@@ -29,4 +31,6 @@ module.exports = {
   logout,
   changeSubscription,
   changeAvatar,
+  verifyToken,
+  resendVerifyEmail,
 };

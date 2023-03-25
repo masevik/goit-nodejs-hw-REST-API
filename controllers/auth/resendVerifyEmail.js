@@ -17,15 +17,13 @@ const resendVerifyEmail = async (req, res, next) => {
     throw HttpError(400, "Verification has already been passed");
   }
 
-  if (!user.verify) {
-    const verifyEmail = {
-      to: email,
-      subject: "Please verify tour email",
-      html: `<strong>Please verify tour email</strong><br/><p>Click the <a target="_blank" href="${BASE_URL}/api/auth/verify/${user.verificationToken}">link</a></p>`,
-    };
+  const verifyEmail = {
+    to: email,
+    subject: "Please verify tour email",
+    html: `<strong>Please verify tour email</strong><br/><p>Click the <a target="_blank" href="${BASE_URL}/api/auth/verify/${user.verificationToken}">link</a></p>`,
+  };
 
-    await sendEmail(verifyEmail);
-  }
+  await sendEmail(verifyEmail);
 
   res.json({
     message: "Verification email sent",
